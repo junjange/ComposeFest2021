@@ -155,9 +155,9 @@ fun OnboardingScreen(onContinueClicked: () -> Unit) {
             }
         }
     }
-
 }
 
+// Preview 어노테이션을 통해 실시간 Compose UI 확인
 @Preview(showBackground = true, widthDp = 320, heightDp = 320)
 @Composable
 fun OnboardingPreview() {
