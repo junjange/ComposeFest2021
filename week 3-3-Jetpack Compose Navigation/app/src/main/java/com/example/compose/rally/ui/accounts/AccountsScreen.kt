@@ -17,15 +17,32 @@
 package com.example.compose.rally.ui.accounts
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.compose.rally.R
+import com.example.compose.rally.RallyScreen
 import com.example.compose.rally.data.Account
+import com.example.compose.rally.data.UserData
+import com.example.compose.rally.ui.bills.BillsBody
 import com.example.compose.rally.ui.components.AccountRow
+import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.components.StatementBody
+import com.example.compose.rally.ui.overview.OverviewBody
+import com.example.compose.rally.ui.theme.RallyTheme
 
 /**
  * The Accounts screen.
@@ -76,3 +93,5 @@ fun SingleAccountBody(account: Account) {
         )
     }
 }
+
+

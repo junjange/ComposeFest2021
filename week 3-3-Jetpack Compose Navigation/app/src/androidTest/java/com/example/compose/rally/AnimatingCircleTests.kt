@@ -22,12 +22,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import androidx.test.filters.SdkSuppress
 import com.example.compose.rally.ui.components.AnimatedCircle
 import com.example.compose.rally.ui.theme.RallyTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -41,6 +49,37 @@ import org.junit.Test
  *
  * Note that different systems can produce slightly different screenshots making the test fail.
  */
+
+
+class RallyNavHostTest {
+
+    @get:Rule
+    val composeTestRule = createComposeRule()
+    lateinit var navController: NavHostController
+
+    @Before
+    fun setupRallyNavHost() {
+        composeTestRule.setContent {
+            navController = rememberNavController()
+            RallyNavHost(navController = navController)
+        }
+    }
+
+    @Test
+    fun rallyNavHost_navigateToAllAccounts_callingNavigate() {
+        runBlocking {
+            withContext(Dispatchers.Main) {
+                navController.navigate(RallyScreen.Accounts.name)
+            }
+        }
+        composeTestRule
+            .onNodeWithContentDescription("Accounts Screen")
+            .assertIsDisplayed()
+    }
+}
+
+
+
 @ExperimentalTestApi
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.O)
 class AnimatingCircleTests {
