@@ -74,8 +74,9 @@ fun RallyApp() {
                 )
             }
         ) { innerPadding ->
-           RallyNavHost(navController = navController,
-           modifier = Modifier.padding(innerPadding)
+           RallyNavHost(
+               navController = navController,
+               modifier = Modifier.padding(innerPadding)
            )
 
 
